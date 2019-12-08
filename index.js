@@ -95,7 +95,7 @@ MCP9808Temperature.prototype = {
 			//return temperature;
 		}
 		
-		currentTemperatureCharacteristic.updateValue(getCurrentTemperature());
+		//currentTemperatureCharacteristic.updateValue(getCurrentTemperature());
 		
 		if(that.updateInterval) {
 			setInterval(() => {
