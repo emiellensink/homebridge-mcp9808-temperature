@@ -13,7 +13,8 @@
   "keywords": [
     "homebridge",
     "temperature",
-    "mcp9808"
+    "mcp9808",
+	"homebridge-plugin"
   ],
   "dependencies": {
     "mcp9808-temperature-sensor": "1.0.13"
