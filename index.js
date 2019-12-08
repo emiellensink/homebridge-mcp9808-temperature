@@ -68,12 +68,19 @@ MCP9808Temperature.prototype = {
 		var mcp9808Service = new Service.TemperatureSensor(that.name);
 		var currentTemperatureCharacteristic = mcp9808Service.getCharacteristic(Characteristic.CurrentTemperature);
 		
-		function updateCurrentTemperature() {
+		function temperaturePromise() {
 			var promise = new Promise((resolve, reject) => {
 				setTimeout(() => {
 					resolve(25);
 				}, 500);
 			})
+			
+			return promise;
+		}
+		
+		
+		function updateCurrentTemperature() {
+			var promise = temperaturePromise()
 	
 			promise.then(temperature => {
 				currentTemperatureCharacteristic.updateValue(temperature);
@@ -104,7 +111,13 @@ MCP9808Temperature.prototype = {
 			}, that.updateInterval);
 		}
 		currentTemperatureCharacteristic.on('get', (callback) => {
-			callback(null, getCurrentTemperature());
+			var promise = temperaturePromise()
+	
+			promise.then(temperature => {
+				callback(null, temperature);
+			}).catch(error => {
+				callback(null, 0);
+			});
 		});
 
 		return [infoService, mcp9808Service];
