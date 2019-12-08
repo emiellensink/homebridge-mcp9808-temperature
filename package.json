@@ -1,0 +1,27 @@
+{
+  "name": "homebridge-mcp9808-temperature",
+  "version": "0.0.1",
+  "description": "A homebridge plugin to read the MCP9808 temperature sensor",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emiellensink/homebridge-mcp9808-temperature.git"
+  },
+  "keywords": [
+    "homebridge",
+    "temperature",
+    "mcp9808"
+  ],
+  "dependencies": {
+    "mcp9808-temperature-sensor": "1.0.13"
+  },
+  "author": "Emiel Lensink",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/emiellensink/homebridge-mcp9808-temperature/issues"
+  },
+  "homepage": "https://github.com/emiellensink/homebridge-mcp9808-temperature#readme"
+}
