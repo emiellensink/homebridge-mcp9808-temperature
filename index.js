@@ -73,13 +73,9 @@ MCP9808Temperature.prototype = {
 				mcp9808.open().then(sensor => {
 					sensor
 					.temperature()
-					.then(temp => {
-						that.log.debug(temp);
-						resolve(temp);
-					})
+					.then(temp => resolve(temp.celsius))
 					.then(_ => sensor.close());
 				}).catch(error => {
-					that.log.debug(error);
 					reject();
 				});
 			})
