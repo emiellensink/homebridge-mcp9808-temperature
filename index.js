@@ -70,9 +70,14 @@ MCP9808Temperature.prototype = {
 		
 		function temperaturePromise() {
 			var promise = new Promise((resolve, reject) => {
-				setTimeout(() => {
-					resolve(25);
-				}, 500);
+				mcp9808.open().then(sensor => {
+					sensor
+					.temperature()
+					.then(temp => resolve(temp))
+					.then(_ => sensor.close());
+				}).catch(error => {
+					reject();
+				});
 			})
 			
 			return promise;
@@ -85,31 +90,14 @@ MCP9808Temperature.prototype = {
 			promise.then(temperature => {
 				currentTemperatureCharacteristic.updateValue(temperature);
 			}).catch(that.log.debug);
-			
-			
-			
-//			mcp9808.open().then(sensor => {
-				
-				
-				
-				
-//			}).catch(that.log.debug);
-			
-			
-//			var data = fs.readFileSync(that.readFile, "utf-8");
-//			var temperatureVal = parseFloat(data) / that.multiplier;
-//			that.log.debug("update currentTemperatureCharacteristic value: " + temperatureVal);
-			//return temperature;
 		}
-		
-		//currentTemperatureCharacteristic.updateValue(getCurrentTemperature());
-		
+				
 		if(that.updateInterval) {
 			setInterval(() => {
 				updateCurrentTemperature();
-				//currentTemperatureCharacteristic.updateValue(getCurrentTemperature());
 			}, that.updateInterval);
 		}
+
 		currentTemperatureCharacteristic.on('get', (callback) => {
 			var promise = temperaturePromise()
 	
