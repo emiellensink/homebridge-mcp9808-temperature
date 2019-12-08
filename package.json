@@ -24,5 +24,9 @@
   "bugs": {
     "url": "https://github.com/emiellensink/homebridge-mcp9808-temperature/issues"
   },
-  "homepage": "https://github.com/emiellensink/homebridge-mcp9808-temperature#readme"
+  "homepage": "https://github.com/emiellensink/homebridge-mcp9808-temperature#readme",
+  "engines": {
+    "node": ">=0.12.0",
+    "homebridge": ">=0.4.1"
+  }
 }
