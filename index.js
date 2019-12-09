@@ -1,6 +1,5 @@
 var Accessory, Service, Characteristic, UUIDGen;
 
-const fs = require('fs');
 const packageFile = require("./package.json");
 const mcp9808 = require('mcp9808-temperature-sensor');
 
@@ -15,28 +14,6 @@ module.exports = function(homebridge) {
 	UUIDGen = homebridge.hap.uuid;
 
 	homebridge.registerAccessory('homebridge-mcp9808-temperature', 'MCP9808Temperature', MCP9808Temperature);
-}
-
-function isConfig(configFile, type, name) {
-	var config = JSON.parse(fs.readFileSync(configFile));
-	if("accessories" === type) {
-		var accessories = config.accessories;
-		for(var i in accessories) {
-			if(accessories[i]['accessory'] === name) {
-				return true;
-			}
-		}
-	} else if("platforms" === type) {
-		var platforms = config.platforms;
-		for(var i in platforms) {
-			if(platforms[i]['platform'] === name) {
-				return true;
-			}
-		}
-	} else {
-	}
-
-	return false;
 }
 
 function MCP9808Temperature(log, config) {
