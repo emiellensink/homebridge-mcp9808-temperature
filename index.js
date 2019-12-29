@@ -66,6 +66,7 @@ MCP9808Temperature.prototype = {
 
 		var mcp9808Service = new Service.TemperatureSensor(that.name);
 		var currentTemperatureCharacteristic = mcp9808Service.getCharacteristic(Characteristic.CurrentTemperature);
+		currentTemperatureCharacteristic.props.minValue = -50;
 		
 		function temperaturePromise() {
 			var promise = new Promise((resolve, reject) => {
